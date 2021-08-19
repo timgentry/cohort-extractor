@@ -36,6 +36,7 @@ setup(
             "presto-python-client",
             # Used by the TPP backend
             "ctds",
+            "pymssql",
             "pyodbc",
         ]
     },

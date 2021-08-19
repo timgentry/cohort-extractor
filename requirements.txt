@@ -54,13 +54,6 @@ identify==1.5.11
     # via pre-commit
 idna==2.9
     # via requests
-importlib-metadata==4.6.0
-    # via
-    #   flake8
-    #   pluggy
-    #   pre-commit
-    #   pytest
-    #   virtualenv
 isort==5.7.0
     # via -r requirements.in
 kiwisolver==1.2.0
@@ -114,6 +107,8 @@ pycparser==2.20
     # via cffi
 pyflakes==2.2.0
     # via flake8
+pymssql==2.2.2
+    # via opensafely-cohort-extractor
 pyodbc==4.0.30
     # via opensafely-cohort-extractor
 pyopenssl==20.0.1
@@ -186,19 +181,13 @@ toml==0.10.2
 typed-ast==1.4.2
     # via black
 typing-extensions==3.7.4.3
-    # via
-    #   black
-    #   importlib-metadata
-    #   structlog
+    # via black
 urllib3==1.26.5
     # via requests
 virtualenv==20.2.2
     # via pre-commit
 wcwidth==0.1.9
     # via pytest
-zipp==3.4.1
-    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
-# setuptools
