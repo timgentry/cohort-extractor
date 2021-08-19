@@ -162,14 +162,25 @@ class TPPBackend:
             # https://docs.microsoft.com/en-us/sql/t-sql/queries/select-into-clause-transact-sql?view=sql-server-ver15#remarks
             conn = self.get_db_connection()
             logger.info(f"Writing results into temporary table '{output_table}'")
-            previous_autocommit = conn.autocommit
-            conn.autocommit = False
+            if conn.__class__.__module__ == "pymssql._pymssql":
+                previous_autocommit = conn.autocommit_state
+            else:
+                previous_autocommit = conn.autocommit
+            # autocommit is a read-only attribute for pymssql
+            if conn.__class__.__module__ == "pymssql._pymssql":
+                conn.autocommit(False)
+            else:
+                conn.autocommit = False
+
             cursor = conn.cursor()
             cursor.execute("BEGIN TRANSACTION")
             cursor.execute(f"SELECT * INTO {output_table} FROM ({final_query}) t")
             cursor.execute(f"CREATE INDEX ix_patient_id ON {output_table} (patient_id)")
             cursor.execute("COMMIT")
-            conn.autocommit = previous_autocommit
+            if conn.__class__.__module__ == "pymssql._pymssql":
+                conn.autocommit(previous_autocommit)
+            else:
+                conn.autocommit = previous_autocommit
             logger.info(f"Downloading results from '{output_table}'")
         else:
             logger.info(f"Downloading results from previous run in '{output_table}'")
