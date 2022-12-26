@@ -94,7 +94,7 @@ platformdirs==2.4.0
     #   virtualenv
 pluggy==1.0.0
     # via pytest
-pre-commit==2.20.0
+pre-commit==2.21.0
     # via -r requirements.dev.in
 py==1.10.0
     # via
@@ -153,12 +153,8 @@ sqlalchemy==1.4.39
     # via -r requirements.dev.in
 texttable==1.6.4
     # via docker-compose
-toml==0.10.2
-    # via pre-commit
 tomli==1.2.3
     # via
-    #   black
-    #   build
     #   pep517
     #   pytest
 urllib3==1.26.5
